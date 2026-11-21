@@ -1,0 +1,38 @@
+{
+  "name": "utilities-project",
+  "version": "1.0.0",
+  "description": "Playwright and BDD starter project for UI and API test automation.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "bddgen": "bddgen",
+    "test": "bddgen && playwright test",
+    "test:api": "playwright test --project=api",
+    "test:ui": "bddgen && playwright test --project=ui --project=bdd",
+    "start:demo": "node app/server.js",
+    "generate:rtm": "node scripts/generate-rtm.js",
+    "generate:scenarios": "tsx ai/generate-scenarios.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sonyalim/Utilities-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Sonyalim/Utilities-Project/issues"
+  },
+  "homepage": "https://github.com/Sonyalim/Utilities-Project#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "dotenv": "^18.0.10",
+    "playwright-bdd": "^9.2.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

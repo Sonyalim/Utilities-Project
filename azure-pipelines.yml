@@ -1,0 +1,43 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '22.x'
+    displayName: 'Use Node.js 22 LTS'
+
+  - script: npm ci
+    displayName: 'Install dependencies'
+
+  - script: npx playwright install --with-deps chromium
+    displayName: 'Install Playwright browser'
+
+  - script: npm test
+    displayName: 'Run API and UI tests'
+
+  - task: PublishTestResults@2
+    displayName: 'Publish JUnit results'
+    condition: always()
+    inputs:
+      testResultsFormat: JUnit
+      testResultsFiles: 'reports/junit.xml'
+      searchFolder: '$(System.DefaultWorkingDirectory)'
+      failTaskOnFailedTests: true
+      failTaskOnMissingResultsFile: false
+      testRunTitle: 'Playwright test results'
+
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish HTML report'
+    condition: always()
+    inputs:
+      targetPath: 'reports/html'
+      artifact: 'playwright-html-report'
+      publishLocation: pipeline

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Utility Meter Portal</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 860px; padding: 0 1rem; color: #172033; }
+      label { display: block; margin: 1rem 0 .25rem; }
+      input { padding: .5rem; min-width: 16rem; }
+      button { cursor: pointer; margin: .75rem .5rem .75rem 0; padding: .55rem .8rem; }
+      table { border-collapse: collapse; margin-top: 1rem; width: 100%; }
+      th, td { border-bottom: 1px solid #ccd2dc; padding: .65rem; text-align: left; }
+      #error { color: #b42318; }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <h1>Utility Meter Portal</h1>
+    <section id="login-view">
+      <h2>Sign in</h2>
+      <form id="login-form">
+        <label for="username">Username</label>
+        <input id="username" name="username" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Sign in</button>
+      </form>
+      <p>Demo credentials: meteradmin / Meter123</p>
+      <p id="error" role="alert" hidden>Username or password is incorrect.</p>
+    </section>
+
+    <main id="dashboard" hidden>
+      <p id="welcome">Welcome, meteradmin</p>
+      <nav aria-label="Portal sections">
+        <button type="button" id="meters-tab">Meters</button>
+        <button type="button" id="customers-tab">Customers</button>
+      </nav>
+      <section id="meters-view" aria-labelledby="meters-heading" hidden>
+        <h2 id="meters-heading">Meters</h2>
+        <table>
+          <thead><tr><th>Meter ID</th><th>Customer ID</th><th>Reading</th><th>Status</th></tr></thead>
+          <tbody id="meters-list"></tbody>
+        </table>
+      </section>
+      <section id="customers-view" aria-labelledby="customers-heading" hidden>
+        <h2 id="customers-heading">Customers</h2>
+        <table>
+          <thead><tr><th>Customer ID</th><th>Name</th><th>Email</th></tr></thead>
+          <tbody id="customers-list"></tbody>
+        </table>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
