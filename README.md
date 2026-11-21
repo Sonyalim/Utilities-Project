@@ -53,7 +53,17 @@ Copy `.env.example` to `.env` and set `AI_API_URL`, `AI_API_KEY`, and `AI_MODEL`
 
 `azure-pipelines.yml` runs the suite on pushes to `main`, publishes JUnit test results, and uploads the HTML report as the `playwright-html-report` pipeline artifact. `Jenkinsfile` runs the same suite in the official Playwright Docker image and publishes JUnit/HTML reports.
 
-To enable Azure DevOps CI, create a pipeline in your Azure DevOps project and point it at this repository's `azure-pipelines.yml`. A hosted green run and its screenshot require access to that Azure DevOps project; no pipeline screenshot is included until a real run is available.
+The Azure pipeline is configured from `azure-pipelines.yml` and publishes JUnit results and the HTML report artifact on each run.
+
+### Passing Azure run
+
+Azure DevOps run `#20261121.1` for commit `4c9b68e` succeeded. The stage reported 100% tests passed and published the HTML report artifact.
+
+![Azure pipeline run succeeded](./docs/pipeline/run-succeeded.png)
+
+![Azure pipeline stage reports 100% tests passed and one artifact](./docs/pipeline/tests-passed.png)
+
+![Azure pipeline published the HTML report artifact](./docs/pipeline/html-report-published.png)
 
 ## Test reports
 
